@@ -114,68 +114,208 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                  child: Column(
-                    children: [
-                      Text(
-                        "All",
-                        style: TextStyle(
-                          color: white.withOpacity(0.5),
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  height: MediaQuery.of(context).size.height,
-                  child: StaggeredGridView.countBuilder(
-                    physics: NeverScrollableScrollPhysics(),
-                    mainAxisSpacing: 12,
-                    crossAxisSpacing: 12,
-                    shrinkWrap: true,
-                    itemCount: 10,
-                    crossAxisCount: 4,
-                    staggeredTileBuilder: (index) => StaggeredTile.fit(2),
-                    itemBuilder: (context, index) => Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: white.withOpacity(0.4),
-                        ),
-                        borderRadius: BorderRadius.circular(7),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "heading",
-                            style: TextStyle(
-                              color: white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            index.isEven ? note : note1,
-                            style: TextStyle(color: white),
-                          ),
-                        ],
-                      ),
-                    ),
+                noteScetionAll(),
+                noteListSection(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget noteScetionAll() {
+    return Container(
+      margin: EdgeInsets.all(15),
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+            child: Row(
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "All",
+                  style: TextStyle(
+                    color: white.withOpacity(0.5),
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
           ),
-        ),
+
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            // height: MediaQuery.of(context).size.height,
+            child: StaggeredGridView.countBuilder(
+              physics: NeverScrollableScrollPhysics(),
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+              shrinkWrap: true,
+              itemCount: 10,
+              crossAxisCount: 4,
+              staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+              itemBuilder: (context, index) => Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: white.withOpacity(0.4),
+                  ),
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "heading",
+                      style: TextStyle(
+                        color: white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      index.isEven
+                          ? note.length > 250
+                              ? "${note.substring(0, 250)}..."
+                              : note
+                          : note1,
+                      style: TextStyle(color: white),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+          //   Container(
+          //     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+          //     height: MediaQuery.of(context).size.height,
+          //     child: StaggeredGridView.countBuilder(
+          //       physics: NeverScrollableScrollPhysics(),
+          //       mainAxisSpacing: 12,
+          //       crossAxisSpacing: 12,
+          //       shrinkWrap: true,
+          //       itemCount: 10,
+          //       crossAxisCount: 4,
+          //       staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+          //       itemBuilder: (context, index) => Container(
+          //         padding: EdgeInsets.all(10),
+          //         decoration: BoxDecoration(
+          //           color:
+          //               index.isEven ? Colors.green[900] : Colors.blue[900],
+          //           border: Border.all(
+          //             color: index.isEven
+          //                 ? Colors.green.withOpacity(0.4)
+          //                 : Colors.blue.withOpacity(0.4),
+          //           ),
+          //           borderRadius: BorderRadius.circular(7),
+          //         ),
+          //         child: Column(
+          //           crossAxisAlignment: CrossAxisAlignment.start,
+          //           children: [
+          //             Text(
+          //               "heading",
+          //               style: TextStyle(
+          //                 color: white,
+          //                 fontSize: 20,
+          //                 fontWeight: FontWeight.bold,
+          //               ),
+          //             ),
+          //             SizedBox(
+          //               height: 10,
+          //             ),
+          //             Text(
+          //               index.isEven
+          //                   ? note.length > 250
+          //                       ? "${note.substring(0, 250)}..."
+          //                       : note
+          //                   : note1,
+          //               style: TextStyle(color: white),
+          //             ),
+          //           ],
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+        ],
+      ),
+    );
+  }
+
+  Widget noteListSection() {
+    return Container(
+      margin: EdgeInsets.all(15),
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+            child: Row(
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "List View",
+                  style: TextStyle(
+                    color: white.withOpacity(0.5),
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            // height: MediaQuery.of(context).size.height,
+            child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 10,
+              itemBuilder: (context, index) => Container(
+                margin: EdgeInsets.only(bottom: 10),
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: white.withOpacity(0.4),
+                  ),
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "heading",
+                      style: TextStyle(
+                        color: white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      index.isEven
+                          ? note.length > 250
+                              ? "${note.substring(0, 250)}..."
+                              : note
+                          : note1,
+                      style: TextStyle(color: white),
+                    ),
+                    // SizedBox(height: 10),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
