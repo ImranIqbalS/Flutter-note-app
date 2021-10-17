@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:note_app/SideMenuBar.dart';
 import 'package:note_app/colors.dart';
+import 'package:note_app/create_note.dart';
 import 'package:note_app/noteView.dart';
 
 class Home extends StatefulWidget {
@@ -20,6 +21,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CreateNote()));
+        },
+        backgroundColor: cardColor,
+        child: Icon(
+          Icons.add,
+          size: 40,
+        ),
+      ),
       backgroundColor: bgColor,
       key: _drawerKey,
       endDrawerEnableOpenDragGesture: true,
