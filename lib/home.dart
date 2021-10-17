@@ -5,6 +5,7 @@ import 'package:note_app/colors.dart';
 import 'package:note_app/create_note.dart';
 import 'package:note_app/noteView.dart';
 import 'package:note_app/searchpage.dart';
+import 'package:note_app/services/db.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -19,6 +20,18 @@ class _HomeState extends State<Home> {
       "this is note description this is note description this is note description this is note description this is note description this is note description this is note description";
   String note1 =
       "this is note description this is note description this is note description";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    createEntry();
+  }
+
+  Future createEntry() async {
+    await NotesDatabase.instance.create();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
