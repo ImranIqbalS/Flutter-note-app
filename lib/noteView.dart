@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/colors.dart';
+import 'package:note_app/edit_note_view.dart';
 
 class NoteView extends StatefulWidget {
   const NoteView({Key? key}) : super(key: key);
@@ -36,7 +37,10 @@ class _NoteViewState extends State<NoteView> {
           ),
           IconButton(
             splashRadius: 17,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => EditNoteView()));
+            },
             icon: Icon(
               Icons.edit_outlined,
             ),
