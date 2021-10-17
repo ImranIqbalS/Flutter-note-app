@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/colors.dart';
+import 'package:note_app/setting.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({Key? key}) : super(key: key);
@@ -153,7 +154,10 @@ class _SideMenuState extends State<SideMenu> {
             ),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Settings()));
+        },
         child: Container(
           padding: EdgeInsets.all(5),
           child: Row(
