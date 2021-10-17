@@ -4,6 +4,7 @@ import 'package:note_app/SideMenuBar.dart';
 import 'package:note_app/colors.dart';
 import 'package:note_app/create_note.dart';
 import 'package:note_app/noteView.dart';
+import 'package:note_app/searchpage.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -72,24 +73,32 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           SizedBox(width: 16),
-                          Container(
-                            height: 55,
-                            width: 200,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Search your notes",
-                                  style: TextStyle(
-                                    color: white.withOpacity(0.5),
-                                    fontSize: 16,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SearchView()));
+                            },
+                            child: Container(
+                              height: 55,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Search your notes",
+                                    style: TextStyle(
+                                      color: white.withOpacity(0.5),
+                                      fontSize: 16,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
