@@ -29,6 +29,7 @@ class _HomeState extends State<Home> {
     getAllNotes();
     getOneNotes();
     updateOneNote();
+    deleteOneNote();
   }
 
   Future createEntry() async {
@@ -45,6 +46,10 @@ class _HomeState extends State<Home> {
 
   Future updateOneNote() async {
     await NotesDatabase.instance.updateNote(5);
+  }
+
+  Future deleteOneNote() async {
+    await NotesDatabase.instance.deleteNote(5);
   }
 
   @override

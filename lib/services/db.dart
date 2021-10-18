@@ -62,4 +62,9 @@ class NotesDatabase {
     return await db!.update("Notes", {"title": "this is updated title"},
         where: "id=?", whereArgs: [id]);
   }
+
+  Future deleteNote(int id) async {
+    final db = await instance.database;
+    await db!.delete("Notes", where: "id=?", whereArgs: [id]);
+  }
 }
