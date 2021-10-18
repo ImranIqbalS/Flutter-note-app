@@ -7,6 +7,8 @@ import 'package:note_app/noteView.dart';
 import 'package:note_app/searchpage.dart';
 import 'package:note_app/services/db.dart';
 
+import 'model/my_note_model.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -25,31 +27,26 @@ class _HomeState extends State<Home> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    createEntry();
-    getAllNotes();
-    getOneNotes();
-    updateOneNote();
-    deleteOneNote();
   }
 
-  Future createEntry() async {
-    await NotesDatabase.instance.insertEntry();
+  Future createEntry(Note note) async {
+    await NotesDatabase.instance.insertEntry(note);
   }
 
   Future<String?> getAllNotes() async {
     await NotesDatabase.instance.readAllNotes();
   }
 
-  Future getOneNotes() async {
-    await NotesDatabase.instance.readOneNote(233);
+  Future getOneNotes(int id) async {
+    await NotesDatabase.instance.readOneNote(id);
   }
 
-  Future updateOneNote() async {
-    await NotesDatabase.instance.updateNote(5);
+  Future updateOneNote(Note note) async {
+    await NotesDatabase.instance.updateNote(note);
   }
 
-  Future deleteOneNote() async {
-    await NotesDatabase.instance.deleteNote(5);
+  Future deleteOneNote(Note note) async {
+    await NotesDatabase.instance.deleteNote(note);
   }
 
   @override
