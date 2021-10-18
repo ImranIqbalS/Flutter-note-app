@@ -30,7 +30,7 @@ class NotesDatabase {
       ${NotesImpNames.pin} $boolType,
       ${NotesImpNames.title} $textType, 
       ${NotesImpNames.content} $textType,
-      ${NotesImpNames.createdTime} $textType,
+      ${NotesImpNames.createdTime} $textType
     )
     ''');
   }
