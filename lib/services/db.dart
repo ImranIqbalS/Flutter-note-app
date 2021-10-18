@@ -56,4 +56,10 @@ class NotesDatabase {
         .query("Notes", columns: ["title"], where: "id=?", whereArgs: [id]);
     print(map);
   }
+
+  Future<int> updateNote(int id) async {
+    final db = await instance.database;
+    return await db!.update("Notes", {"title": "this is updated title"},
+        where: "id=?", whereArgs: [id]);
+  }
 }
