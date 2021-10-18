@@ -22,7 +22,7 @@ class NotesDatabase {
     await db.execute('''
     CREATE TABLE Notes(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      pin BOLLEAN NOT NULL,
+      pin BOOLEAN NOT NULL,
       title TEXT NOT NULL, 
       content TEXT NOT NULL,
       createdTime TEXT NOT NULL,
@@ -30,14 +30,30 @@ class NotesDatabase {
     ''');
   }
 
-  Future<bool?> create() async {
+  Future<bool?> insertEntry() async {
     final db = await instance.database;
     await db!.insert("Notes", {
-      "pin": false,
-      "title": "this is my title",
+      "id": 233,
+      "pin": 0,
+      "title": "this is my title 233",
       "content": "this is my note content",
       "createdTime": "26 Jan 2018"
     });
     return true;
+  }
+
+  Future<String> readAllNotes() async {
+    final db = await instance.database;
+    final orderBy = 'createdTime ASC';
+    final query_result = await db!.query("Notes", orderBy: orderBy);
+    print(query_result);
+    return "success";
+  }
+
+  Future<String?> readOneNote(int id) async {
+    final db = await instance.database;
+    final map = await db!
+        .query("Notes", columns: ["title"], where: "id=?", whereArgs: [id]);
+    print(map);
   }
 }

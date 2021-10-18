@@ -26,10 +26,20 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     createEntry();
+    getAllNotes();
+    getOneNotes();
   }
 
   Future createEntry() async {
-    await NotesDatabase.instance.create();
+    await NotesDatabase.instance.insertEntry();
+  }
+
+  Future<String?> getAllNotes() async {
+    await NotesDatabase.instance.readAllNotes();
+  }
+
+  Future<String?> getOneNotes() async {
+    await NotesDatabase.instance.readOneNote(233);
   }
 
   @override
