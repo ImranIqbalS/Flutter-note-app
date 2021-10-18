@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/colors.dart';
 import 'package:note_app/edit_note_view.dart';
+import 'package:note_app/model/my_note_model.dart';
 
 class NoteView extends StatefulWidget {
-  const NoteView({Key? key}) : super(key: key);
+  Note note;
+  NoteView({required this.note});
 
   @override
   _NoteViewState createState() => _NoteViewState();
 }
 
 class _NoteViewState extends State<NoteView> {
-  String note =
-      "this is note description this is note description this is note description this is note description this is note description this is note description this is note description";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +52,7 @@ class _NoteViewState extends State<NoteView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Heading",
+              widget.note.title,
               style: TextStyle(
                 color: white,
                 fontSize: 23,
@@ -62,7 +61,7 @@ class _NoteViewState extends State<NoteView> {
             ),
             SizedBox(height: 10),
             Text(
-              note,
+              widget.note.content,
               style: TextStyle(color: white),
             ),
           ],

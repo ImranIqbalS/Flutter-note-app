@@ -239,8 +239,11 @@ class _HomeState extends State<Home> {
               staggeredTileBuilder: (index) => StaggeredTile.fit(2),
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => NoteView()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              NoteView(note: notesList[index])));
                 },
                 child: Container(
                   padding: EdgeInsets.all(10),
