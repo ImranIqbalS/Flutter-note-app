@@ -68,6 +68,13 @@ class NotesDatabase {
         where: "${NotesImpNames.id}=?", whereArgs: [note.id]);
   }
 
+  Future<int> pinNote(Note note) async {
+    final db = await instance.database;
+    return await db!.update(
+        NotesImpNames.tableName, {NotesImpNames.pin: !note.pin ? 1 : 0},
+        where: "${NotesImpNames.id}=?", whereArgs: [note.id]);
+  }
+
   Future<List<int>> getNoteString(String query) async {
     final db = await instance.database;
     final result = await db!.query(NotesImpNames.tableName);
