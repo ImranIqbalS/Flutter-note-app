@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/colors.dart';
 import 'package:note_app/edit_note_view.dart';
+import 'package:note_app/home.dart';
 import 'package:note_app/model/my_note_model.dart';
+import 'package:note_app/services/db.dart';
 
 class NoteView extends StatefulWidget {
   Note note;
@@ -44,6 +46,17 @@ class _NoteViewState extends State<NoteView> {
             },
             icon: Icon(
               Icons.edit_outlined,
+            ),
+          ),
+          IconButton(
+            splashRadius: 17,
+            onPressed: () async {
+              await NotesDatabase.instance.deleteNote(widget.note);
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => Home()));
+            },
+            icon: Icon(
+              Icons.delete_forever_outlined,
             ),
           ),
         ],
