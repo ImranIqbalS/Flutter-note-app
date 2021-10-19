@@ -28,6 +28,8 @@ class NotesDatabase {
     CREATE TABLE Notes(
       ${NotesImpNames.id} $idType,
       ${NotesImpNames.pin} $boolType,
+      ${NotesImpNames.isArchieve} $boolType,
+
       ${NotesImpNames.title} $textType, 
       ${NotesImpNames.content} $textType,
       ${NotesImpNames.createdTime} $textType
@@ -72,6 +74,13 @@ class NotesDatabase {
     final db = await instance.database;
     return await db!.update(
         NotesImpNames.tableName, {NotesImpNames.pin: !note.pin ? 1 : 0},
+        where: "${NotesImpNames.id}=?", whereArgs: [note.id]);
+  }
+
+  Future<int> archNote(Note note) async {
+    final db = await instance.database;
+    return await db!.update(NotesImpNames.tableName,
+        {NotesImpNames.isArchieve: !note.isArchieve ? 1 : 0},
         where: "${NotesImpNames.id}=?", whereArgs: [note.id]);
   }
 

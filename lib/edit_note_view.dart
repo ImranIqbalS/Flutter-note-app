@@ -39,7 +39,8 @@ class _EditNoteViewState extends State<EditNoteView> {
                   createdTime: widget.note.createdTime,
                   // createdTime: DateTime.now(),
 
-                  pin: false,
+                  pin: widget.note.pin,
+                  isArchieve: widget.note.isArchieve,
                   id: widget.note.id);
               await NotesDatabase.instance.updateNote(newNote);
               Navigator.pushReplacement(

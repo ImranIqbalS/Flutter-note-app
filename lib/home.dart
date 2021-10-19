@@ -31,6 +31,7 @@ class _HomeState extends State<Home> {
     super.initState();
     createEntry(Note(
         pin: false,
+        isArchieve: false,
         title: "this is title",
         content:
             "this is content note this is note description this is note description this is note description this is note description this is note description this is note description this is note description",

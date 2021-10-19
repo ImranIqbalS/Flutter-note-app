@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/archive_view.dart';
 import 'package:note_app/colors.dart';
 import 'package:note_app/edit_note_view.dart';
 import 'package:note_app/home.dart';
@@ -15,11 +16,11 @@ class NoteView extends StatefulWidget {
 
 class _NoteViewState extends State<NoteView> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print(widget.note.pin);
-  }
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   print(widget.note.pin);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +43,15 @@ class _NoteViewState extends State<NoteView> {
           ),
           IconButton(
             splashRadius: 17,
-            onPressed: () {},
+            onPressed: () async {
+              await NotesDatabase.instance.archNote(widget.note);
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => Archive()));
+            },
             icon: Icon(
-              Icons.archive_outlined,
+              widget.note.isArchieve
+                  ? Icons.archive_rounded
+                  : Icons.archive_outlined,
             ),
           ),
           IconButton(

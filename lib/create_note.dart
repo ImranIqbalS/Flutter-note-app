@@ -37,6 +37,7 @@ class _CreateNoteState extends State<CreateNote> {
                   title: title.text,
                   content: content.text,
                   pin: false,
+                  isArchieve: false,
                   createdTime: DateTime.now()));
               Navigator.push(
                   context, MaterialPageRoute(builder: (content) => Home()));
