@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/colors.dart';
+import 'package:note_app/home.dart';
+import 'package:note_app/model/my_note_model.dart';
+import 'package:note_app/services/db.dart';
 
 class CreateNote extends StatefulWidget {
   const CreateNote({Key? key}) : super(key: key);
@@ -9,6 +12,17 @@ class CreateNote extends StatefulWidget {
 }
 
 class _CreateNoteState extends State<CreateNote> {
+  TextEditingController title = new TextEditingController();
+  TextEditingController content = new TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    title.dispose();
+    content.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +32,15 @@ class _CreateNoteState extends State<CreateNote> {
         elevation: 0.0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              await NotesDatabase.instance.insertEntry(Note(
+                  title: title.text,
+                  content: content.text,
+                  pin: false,
+                  createdTime: DateTime.now()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (content) => Home()));
+            },
             splashRadius: 17,
             icon: Icon(
               Icons.save_outlined,
@@ -32,6 +54,7 @@ class _CreateNoteState extends State<CreateNote> {
           children: [
             TextField(
               cursorColor: white,
+              controller: title,
               style: TextStyle(
                 fontSize: 25,
                 color: Colors.white,
@@ -53,6 +76,7 @@ class _CreateNoteState extends State<CreateNote> {
             Container(
               height: 300,
               child: TextField(
+                controller: content,
                 keyboardType: TextInputType.multiline,
                 minLines: 50,
                 maxLines: null,
